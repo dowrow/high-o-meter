@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">High-O-Meter</string>
+    <string name="start">Start</string>
+    <string name="title_activity_red_eyes">RedEyes</string>
+    <string name="take_picture">Take a picture</string>
+    <string name="red_eyes_title">Measure Red Eyes</string>
+    <string name="red_eyes_explanation">Take a close picture of your eyes.\nWorks best with good lighting.</string>
+    <string name="measuring">Measuring redness...</string>
+    <string name="title_activity_your_results">Your Results</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+</resources>
