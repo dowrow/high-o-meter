@@ -3,6 +3,8 @@ package com.dowrow.high_o_meter.model;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
+import java.util.logging.Level;
+
 import static java.lang.Math.*;
 
 /**
@@ -35,6 +37,29 @@ public class HighOMeter {
 
 
         double distance = Math.sqrt(Math.pow(255 - redBucket, 2) + Math.pow(0 - greenBucket, 2) + Math.pow(0 - blueBucket, 2));
-        return  (distance / 441.67295593) * 100;
+        return  (1 - (distance / 441.67295593)) * 100;
+    }
+
+    public enum level { BUZZED, HIGH, STONED, BLAZED, GONE };
+
+    /**
+     * Returns number between 5-10
+     * @param percent
+     * @return
+     */
+    public static level percentToScore(double percent) {
+        if (percent < 44) {
+            return level.BUZZED;
+        }
+        if (percent < 40) {
+            return level.HIGH;
+        }
+        if (percent < 50) {
+            return  level.STONED;
+        }
+        if (percent < 70) {
+            return level.BLAZED;
+        }
+        return level.GONE;
     }
 }

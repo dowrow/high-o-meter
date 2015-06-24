@@ -7,7 +7,21 @@
     <string name="red_eyes_explanation">Take a close picture of your eyes.\nWorks best with good lighting.</string>
     <string name="measuring">Measuring redness...</string>
     <string name="title_activity_your_results">Your Results</string>
+    <string name="you_scored">You scored</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <!-- Status -->
+    <string name="buzzed">buzzed</string>
+    <string name="high">high</string>
+    <string name="stoned">stoned</string>
+    <string name="blazed">blazed</string>
+    <string name="gone">gone</string>
+
+    <!-- Descriptions-->
+    <string name="buzzed_desc">Things seem more interesting, colors may become more intense. Feelings of hunger.</string>
+    <string name="high_desc">You tend to stare off into space, you feel relaxed but there is a certain haze around.</string>
+    <string name="stoned_desc">Slight vibrations in your body, hard to focus, random thoughts. Your perception of the world is very different now.</string>
+    <string name="blazed_desc">Waves of euphoria wash over your body. Very little balance. Textures stand out more.</string>
+    <string name="gone_desc">You are completely and utterly at the mercy of the universe. Logic is gone.</string>
+    <string name="you_are">You are</string>
+
 </resources>

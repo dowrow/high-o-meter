@@ -13,12 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.dowrow.high_o_meter.model.HighOMeter;
+
 import static com.dowrow.high_o_meter.R.string.measuring;
 
 
 public class RedEyes extends ActionBarActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    public static String IMAGE_EXTRA = "image_extra";
+    public static String SCORE_EXTRA = "SCORE_EXTRA";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,7 @@ public class RedEyes extends ActionBarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            final Bitmap imageBitmap = (Bitmap) extras.get("data");
             final Intent i = new Intent(this, YourResults.class);
             final ProgressDialog dialog = ProgressDialog.show(RedEyes.this, "", getString(measuring), true);
             new Thread() {
@@ -65,7 +67,7 @@ public class RedEyes extends ActionBarActivity {
 
                     dialog.dismiss();
 
-                    i.putExtra(IMAGE_EXTRA, "tt");
+                    i.putExtra(SCORE_EXTRA, HighOMeter.measureRedness(imageBitmap));
                     startActivity(i);
                 }
             }.start();
@@ -73,4 +75,6 @@ public class RedEyes extends ActionBarActivity {
 
         }
     }
+
+
 }

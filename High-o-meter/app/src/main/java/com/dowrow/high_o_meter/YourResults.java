@@ -1,23 +1,100 @@
 package com.dowrow.high_o_meter;
 
+import android.annotation.TargetApi;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
+
+import com.dowrow.high_o_meter.model.HighOMeter;
+
+import static com.dowrow.high_o_meter.R.string.measuring;
 
 
 public class YourResults extends ActionBarActivity {
 
+
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_results);
-        setTitle(R.string.title_activity_your_results);
+        double score = 0;
+
+        // Get score
+        score = getIntent().getDoubleExtra(RedEyes.SCORE_EXTRA, score);
+        int status = 0;
+        int buzzword = R.string.buzzed;
+        int desc = R.string.buzzed_desc;
+        switch (HighOMeter.percentToScore(score)) {
+            case BUZZED:
+                buzzword = R.string.buzzed;
+                status = R.drawable.buzzed;
+                desc = R.string.buzzed_desc;
+                break;
+            case HIGH:
+                buzzword = R.string.high;
+                status = R.drawable.high;
+                desc = R.string.high_desc;
+                break;
+            case STONED:
+                buzzword = R.string.stoned;
+                status = R.drawable.veryhigh;
+                desc = R.string.stoned_desc;
+                break;
+            case BLAZED:
+                buzzword = R.string.blazed;
+                status = R.drawable.going;
+                desc = R.string.blazed_desc;
+                break;
+            default:
+                buzzword = R.string.gone;
+                status = R.drawable.gone;
+                desc = R.string.gone_desc;
+                break;
+        }
+
+        // Set bar title
+        setTitle(getString(R.string.you_scored) + " " + Math.round(score) + "%");
+
+        // Set bagde title
+        ((TextView)findViewById(R.id.title)).setText(getString(R.string.you_are) + " " + getString(buzzword) + "!");
+
+        // Set bagge
+        ((ImageView)findViewById(R.id.badge)).setImageDrawable(getResources().getDrawable(status));
+
+        // Set desc
+        ((TextView)findViewById(R.id.description)).setText(getString(desc));
+
+        // Rating bar callbacks
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                final float numStars = ratingBar.getRating();
+                if (numStars >= 4) {
+                    goToGooglePlay();
+                }
+            }
+        });
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         return true;
     }
 
@@ -28,5 +105,20 @@ public class YourResults extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goToGooglePlay () {
+        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
+
+    }
+
+    public void tryAgain (View v) {
+        Intent i  = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 }
