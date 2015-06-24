@@ -14,6 +14,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.dowrow.high_o_meter.model.HighOMeter;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 
 import static com.dowrow.high_o_meter.R.string.measuring;
 
@@ -21,11 +24,18 @@ import static com.dowrow.high_o_meter.R.string.measuring;
 public class RedEyes extends ActionBarActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public static String SCORE_EXTRA = "SCORE_EXTRA";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_red_eyes);
         setTitle(R.string.red_eyes_title);
+
+        //Load banner
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
     }
 
     @Override

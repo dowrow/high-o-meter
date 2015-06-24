@@ -61,7 +61,11 @@
         android:text="Try Again"
         android:onClick="tryAgain"/>
 
-
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Get version without ads"
+        android:onClick="getFull"/>
 </LinearLayout>
 
 </RelativeLayout>

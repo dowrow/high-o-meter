@@ -16,20 +16,37 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.dowrow.high_o_meter.model.HighOMeter;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import static com.dowrow.high_o_meter.R.string.measuring;
 
 
 public class YourResults extends ActionBarActivity {
 
+    private InterstitialAd mInterstitialAd;
 
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_results);
         double score = 0;
+
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.banner_ad_unit_id_big));
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        mInterstitialAd.loadAd(adRequest);
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                mInterstitialAd.show();
+            }
+        });
+
 
         // Get score
         score = getIntent().getDoubleExtra(RedEyes.SCORE_EXTRA, score);
@@ -120,5 +137,14 @@ public class YourResults extends ActionBarActivity {
     public void tryAgain (View v) {
         Intent i  = new Intent(this, MainActivity.class);
         startActivity(i);
+    }
+
+    public  void getFull (View v) {
+        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
     }
 }
