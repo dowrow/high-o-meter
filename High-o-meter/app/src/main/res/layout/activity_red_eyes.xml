@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.dowrow.high_o_meter.RedEyes"
+    tools:context="com.dowrow.high_o_meter_free.RedEyes"
     >
 
     <LinearLayout
@@ -41,7 +41,7 @@
             android:layout_alignParentBottom="true"
             android:layout_gravity="center_horizontal|bottom"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+            ads:adUnitId="ca-app-pub-5039779209013421/4105549371">
         </com.google.android.gms.ads.AdView>
-    </LinearLayout>s
+    </LinearLayout>
 </RelativeLayout>

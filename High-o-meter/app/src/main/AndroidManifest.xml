@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dowrow.high_o_meter" >
+    package="com.dowrow.high_o_meter_free" >
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -12,13 +12,13 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label= "@string/app_name"
         android:theme="@style/AppTheme" >
         <!--This meta-data tag is required to use Google Play Services.-->
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.dowrow.high_o_meter_free.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,12 +27,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RedEyes"
+            android:name="com.dowrow.high_o_meter_free.RedEyes"
             android:label="@string/title_activity_red_eyes"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="com.dowrow.high_o_meter_free.MainActivity" >
         </activity>
         <activity
-            android:name=".YourResults"
+            android:name="com.dowrow.high_o_meter_free.YourResults"
             android:label="@string/title_activity_your_results" >
         </activity>
         <!--Include the AdActivity configChanges and theme. -->
